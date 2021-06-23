@@ -1,0 +1,177 @@
+[
+
+	{
+		"method": "GET",
+		"path": "/users",
+		"scope": [[]],
+		"info": "returns the list of existing users",
+		"in": {},
+		"out": {
+			"users": { "info": "users list", "type": "[]user", "name": "Users" }
+		}
+	},
+	{
+		"method": "GET",
+		"path": "/user/{id}",
+		"scope": [[], ["reader"]],
+		"info": "returns info about an existing user",
+		"in": {
+			"{id}": { "info": "the target user id", "name": "ID", "type": "uint" }
+		},
+		"out": {
+			"id":        { "info": "user id",       "type": "uint",         "name": "ID"        },
+			"username":  { "info": "username",      "type": "string(3,30)", "name": "Username"  },
+			"firstname": { "info": "first name",    "type": "string(1,30)", "name": "Firstname" },
+			"lastname":  { "info": "last name",     "type": "string(1,30)", "name": "Lastname"  },
+			"articles":  { "info": "user articles", "type": "[]article",    "name": "Articles"  }
+		}
+	},
+
+	{
+		"method": "POST",
+		"path": "/user",
+		"scope": [[]],
+		"info": "creates a new user",
+		"in": {
+			"username":  { "info": "username",   "type": "string(3,30)", "name": "Username" },
+			"firstname": { "info": "first name", "type": "string(1,30)", "name": "Firstname" },
+			"lastname":  { "info": "last name",  "type": "string(1,30)", "name": "Lastname" }
+		},
+		"out": {
+			"id":        { "info": "user id",       "type": "uint",         "name": "ID"        },
+			"username":  { "info": "username",      "type": "string(3,30)", "name": "Username"  },
+			"firstname": { "info": "first name",    "type": "string(1,30)", "name": "Firstname" },
+			"lastname":  { "info": "last name",     "type": "string(1,30)", "name": "Lastname"  }
+		}
+	},
+	{
+		"method": "PUT",
+		"path": "/user/{id}",
+		"scope": [["user[ID]"]],
+		"info": "updates an existing user",
+		"in": {
+			"{id}":      { "info": "the target user id", "type": "uint", "name": "ID"                 },
+			"username":  { "info": "updated username",   "type": "?string(3,30)", "name": "Username"  },
+			"firstname": { "info": "updated first name", "type": "?string(1,30)", "name": "Firstname" },
+			"lastname":  { "info": "updated last name",  "type": "?string(1,30)", "name": "Lastname"  }
+		},
+		"out": {
+			"id":        { "info": "user id",       "type": "uint",         "name": "ID"        },
+			"username":  { "info": "username",      "type": "string(3,30)", "name": "Username"  },
+			"firstname": { "info": "first name",    "type": "string(1,30)", "name": "Firstname" },
+			"lastname":  { "info": "last name",     "type": "string(1,30)", "name": "Lastname"  }
+		}
+	},
+
+	{
+		"method": "DELETE",
+		"path": "/user/{id}",
+		"scope": [["user[ID]"]],
+		"info": "deletes an existing user",
+		"in": {
+			"{id}": { "info": "the target user id", "name": "ID", "type": "uint" }
+		},
+		"out": {}
+	},
+
+	{
+		"method": "GET",
+		"path": "/user/{id}/articles",
+		"scope": [["reader"]],
+		"info": "returns the list of existing articles a user wrote",
+		"in": {
+			"{id}": { "info": "author user id", "name": "ID", "type": "uint" }
+		},
+		"out": {
+			"articles": { "info": "articles list", "type": "[]article", "name": "Articles" }
+		}
+	},
+
+	{
+		"method": "GET",
+		"path": "/articles",
+		"scope": [["reader"]],
+		"info": "returns the list of existing articles",
+		"in": {},
+		"out": {
+			"articles": { "info": "articles list", "type": "[]article", "name": "Articles" }
+		}
+	}, {
+		"method": "GET",
+		"path": "/article/{id}",
+		"scope": [["reader"]],
+		"info": "returns an existing article",
+		"in": {
+			"{id}": { "info": "the target article id", "name": "ID", "type": "uint" }
+		},
+		"out": {
+			"id":     { "info": "the article id",      "type": "uint",          "name": "ID"     },
+			"title":  { "info": "the article title",   "type": "string(5,255)", "name": "Title"  },
+			"body":   { "info": "the article body",    "type": "string",        "name": "Body"   },
+			"author": { "info": "the author user id",  "type": "uint",          "name": "Author" },
+			"score":  { "info": "absolute vote score", "type": "int",           "name": "Score"  }
+		}
+	}, {
+		"method": "POST",
+		"path": "/article/{author}",
+		"scope": [["user[Author]"]],
+		"info": "post a new article",
+		"in": {
+			"{author}": { "info": "the author id",     "type": "uint",          "name": "Author" },
+			"title":    { "info": "the article title", "type": "string(5,255)", "name": "Title"  },
+			"body":     { "info": "the article body",  "type": "string",        "name": "Body"   }
+		},
+		"out": {
+			"id":     { "info": "the article id",      "type": "uint",          "name": "ID"     },
+			"title":  { "info": "the article title",   "type": "string(5,255)", "name": "Title"  },
+			"body":   { "info": "the article body",    "type": "string",        "name": "Body"   },
+			"author": { "info": "the author user id",  "type": "uint",          "name": "Author" },
+			"score":  { "info": "absolute vote score", "type": "int",           "name": "Score"  }
+		}
+	}, {
+		"method": "DELETE",
+		"path": "/article/{id}",
+		"scope": [],
+		"info": "deletes an article",
+		"in": {
+			"{id}": { "info": "the target article id", "name": "ID", "type": "uint" }
+		},
+		"out": { }
+	},
+
+	{
+		"method": "POST",
+		"path": "/article/{id}/up",
+		"scope": [],
+		"info": "upvotes an article",
+		"in": {
+			"{id}": { "info": "the target article id", "name": "Article", "type": "uint" },
+			"user": { "info": "user id",               "name": "User",    "type": "uint" }
+		},
+		"out": {
+			"id":     { "info": "the article id",      "type": "uint",          "name": "ID"     },
+			"title":  { "info": "the article title",   "type": "string(5,255)", "name": "Title"  },
+			"body":   { "info": "the article body",    "type": "string",        "name": "Body"   },
+			"author": { "info": "the author user id",  "type": "uint",          "name": "Author" },
+			"score":  { "info": "absolute vote score", "type": "int",           "name": "Score"  }
+		}
+	},
+	{
+		"method": "POST",
+		"path": "/article/{id}/down",
+		"scope": [],
+		"info": "downvotes an article",
+		"in": {
+			"{id}": { "info": "the target article id", "name": "Article", "type": "uint" },
+			"user": { "info": "user id",               "name": "User",    "type": "uint" }
+		},
+		"out": {
+			"id":     { "info": "the article id",      "type": "uint",          "name": "ID"     },
+			"title":  { "info": "the article title",   "type": "string(5,255)", "name": "Title"  },
+			"body":   { "info": "the article body",    "type": "string",        "name": "Body"   },
+			"author": { "info": "the author user id",  "type": "uint",          "name": "Author" },
+			"score":  { "info": "absolute vote score", "type": "int",           "name": "Score"  }
+		}
+	}
+
+]
