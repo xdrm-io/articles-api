@@ -13,7 +13,7 @@
 	{
 		"method": "GET",
 		"path": "/user/{id}",
-		"scope": [[], ["reader"]],
+		"scope": [["user[ID]"]],
 		"info": "returns info about an existing user",
 		"in": {
 			"{id}": { "info": "the target user id", "name": "ID", "type": "uint" }

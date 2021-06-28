@@ -23,14 +23,14 @@ func storageError(err error) api.Err {
 	case storage.ErrTransaction:
 		return api.ErrTransaction
 	case storage.ErrCreate:
-		return api.ErrCreation
+		return api.ErrCreate
 	case storage.ErrUpdate:
-		return api.ErrModification
+		return api.ErrUpdate
 	case storage.ErrDelete:
-		return api.ErrDeletion
+		return api.ErrDelete
 	case storage.ErrNotFound:
-		return api.ErrNoMatchFound
+		return api.ErrNotFound
 	default:
-		return api.ErrUnknown
+		return api.ErrFailure
 	}
 }
