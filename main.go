@@ -5,12 +5,13 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"reflect"
 
 	"github.com/xdrm-io/aicra"
 	"github.com/xdrm-io/aicra/validator"
+	"github.com/xdrm-io/articles-api/model"
 	"github.com/xdrm-io/articles-api/services"
 	"github.com/xdrm-io/articles-api/storage"
-	"github.com/xdrm-io/articles-api/types"
 )
 
 func main() {
@@ -22,16 +23,19 @@ func main() {
 
 func run() error {
 	b := &aicra.Builder{}
-	b.Validate(validator.AnyType{})
-	b.Validate(validator.BoolType{})
-	b.Validate(validator.UintType{})
-	b.Validate(validator.IntType{})
-	b.Validate(validator.StringType{})
+	b.Input(validator.AnyType{})
+	b.Input(validator.BoolType{})
+	b.Input(validator.UintType{})
+	b.Input(validator.IntType{})
+	b.Input(validator.StringType{})
 
-	b.Validate(types.UserType{})
-	b.Validate(types.UsersType{})
-	b.Validate(types.ArticleType{})
-	b.Validate(types.ArticlesType{})
+	b.Output("int", reflect.TypeOf(int(0)))
+	b.Output("uint", reflect.TypeOf(uint(0)))
+	b.Output("string", reflect.TypeOf(""))
+	b.Output("user", reflect.TypeOf(model.User{}))
+	b.Output("[]user", reflect.TypeOf([]model.User{}))
+	b.Output("article", reflect.TypeOf(model.Article{}))
+	b.Output("[]article", reflect.TypeOf([]model.Article{}))
 
 	config, err := os.OpenFile("api/definition.json", os.O_RDONLY, os.ModePerm)
 	if err != nil {

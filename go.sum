@@ -9,3 +9,7 @@ github.com/mattn/go-sqlite3 v1.14.7 h1:fxWBnXkxfM6sRiuH3bqJ4CfzZojMOLVc0UTsTglEg
 github.com/mattn/go-sqlite3 v1.14.7/go.mod h1:NyWgC/yNuGj7Q9rpYnZvas74GogHl5/Z4A/KQRfk6bU=
 github.com/xdrm-io/aicra v0.4.4 h1:kOvWBJ4EW2VGc88SiVnOzzkbgGG2XQ9UyvaSAz3fxS8=
 github.com/xdrm-io/aicra v0.4.4/go.mod h1:fnl/ZgAeO2x34kjqDn0gzWt38lZGB+ElZmvCLJ+RvAw=
+github.com/xdrm-io/aicra v0.4.9 h1:HB5mQ83tnj4AMnXbi3skpfsg/VIqDukXgZOmj0ROmps=
+github.com/xdrm-io/aicra v0.4.9/go.mod h1:fnl/ZgAeO2x34kjqDn0gzWt38lZGB+ElZmvCLJ+RvAw=
+github.com/xdrm-io/aicra v0.4.10 h1:GDtZqRYSc7sES/QyINerp5A24vZ/m+umJzenH7eRDK8=
+github.com/xdrm-io/aicra v0.4.10/go.mod h1:fnl/ZgAeO2x34kjqDn0gzWt38lZGB+ElZmvCLJ+RvAw=
